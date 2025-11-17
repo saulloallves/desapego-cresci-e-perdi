@@ -104,17 +104,15 @@ const FranchiseSection = () => {
               }`}
             >
               <Button
-                asChild
                 size="lg"
+                onClick={() => {
+                  if ((window as any).Typebot) {
+                    (window as any).Typebot.open();
+                  }
+                }}
                 className="bg-accent hover:bg-accent/90 text-accent-foreground font-display text-2xl md:text-3xl px-12 py-8 h-auto rounded-full shadow-[var(--shadow-strong)] hover:scale-105 transition-transform"
               >
-                <a
-                  href="https://crescieperdi.com.br/franquia"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  SEJA UM FRANQUEADO
-                </a>
+                SEJA UM FRANQUEADO
               </Button>
               <p className="text-sm text-muted-foreground mt-4">
                 Entre em contato e descubra como levar essa transformação

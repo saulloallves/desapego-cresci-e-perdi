@@ -52,16 +52,14 @@ const Header = () => {
               Franquia
             </button>
             <Button
-              asChild
+              onClick={() => {
+                if ((window as any).Typebot) {
+                  (window as any).Typebot.open();
+                }
+              }}
               className="bg-accent hover:bg-accent/90 text-accent-foreground font-bold shadow-lg"
             >
-              <a
-                href="https://crescieperdi.com.br/franquia"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                SEJA UM FRANQUEADO
-              </a>
+              SEJA UM FRANQUEADO
             </Button>
           </div>
 
@@ -104,16 +102,14 @@ const Header = () => {
                 Franquia
               </button>
               <Button
-                asChild
+                onClick={() => {
+                  if ((window as any).Typebot) {
+                    (window as any).Typebot.open();
+                  }
+                }}
                 className="bg-accent hover:bg-accent/90 text-accent-foreground font-bold"
               >
-                <a
-                  href="https://crescieperdi.com.br/franquia"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  SEJA UM FRANQUEADO
-                </a>
+                SEJA UM FRANQUEADO
               </Button>
             </div>
           </div>
