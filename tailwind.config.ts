@@ -58,7 +58,7 @@ export default {
       },
       fontFamily: {
         display: ['Luckiest Guy', 'cursive'],
-        sans: ['Open Sans', 'sans-serif'],
+        sans: ['Bebas Neue', 'sans-serif'],
       },
       borderRadius: {
         lg: "var(--radius)",
