@@ -1,13 +1,14 @@
 import { Facebook, Instagram } from "lucide-react";
+import logo from "@/assets/logo cresci-header.png";
 
 const Footer = () => {
   return (
-    <footer className="bg-primary text-primary-foreground py-12">
+    <footer className="bg-[#00aeff] text-primary-foreground py-12">
       <div className="container mx-auto px-4">
         <div className="flex flex-col items-center gap-6">
           {/* Logo */}
-          <div className="text-3xl md:text-4xl font-display">
-            CRESCI<span className="text-accent">E</span>PERDI
+          <div>
+            <img src={logo} alt="Cresci e Perdi" className="h-12 md:h-14" />
           </div>
 
           {/* Social Icons */}

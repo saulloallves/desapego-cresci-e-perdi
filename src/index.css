@@ -17,39 +17,41 @@ All colors MUST be HSL.
     --popover: 0 0% 100%;
     --popover-foreground: 0 0% 10%;
 
-    --primary: 356 96% 45%;
+    --primary: 25 89% 25%;
     --primary-foreground: 0 0% 100%;
 
-    --secondary: 195 100% 47%;
-    --secondary-foreground: 0 0% 100%;
+    --secondary: 33 100% 56%;
+    --secondary-foreground: 0 0% 10%;
 
-    --muted: 49 15% 95%;
+    --muted: 44 10% 95%;
     --muted-foreground: 0 0% 40%;
 
-    --accent: 49 100% 50%;
+    --accent: 44 100% 55%;
     --accent-foreground: 0 0% 10%;
 
-    --destructive: 0 84.2% 60.2%;
+    --destructive: 0 100% 50%;
     --destructive-foreground: 0 0% 100%;
 
-    --border: 49 20% 88%;
-    --input: 49 20% 90%;
-    --ring: 356 96% 45%;
+    --border: 44 20% 88%;
+    --input: 44 20% 90%;
+    --ring: 25 89% 25%;
 
     --radius: 1rem;
     
-    --brand-red: 356 96% 45%;
-    --brand-blue: 195 100% 47%;
-    --brand-yellow: 49 100% 50%;
+    --brand-brown: 25 89% 25%;
+    --brand-orange: 33 100% 56%;
+    --brand-yellow: 44 100% 55%;
+    --brand-blue: 199 100% 50%;
+    --brand-red: 0 100% 50%;
     
-    --curve-bg: 49 15% 97%;
+    --curve-bg: 44 15% 97%;
     
-    --gradient-hero: linear-gradient(135deg, hsl(195 100% 47%) 0%, hsl(195 80% 60%) 100%);
-    --gradient-cta: linear-gradient(135deg, hsl(356 96% 45%) 0%, hsl(356 96% 55%) 100%);
-    --gradient-accent: linear-gradient(135deg, hsl(49 100% 50%) 0%, hsl(49 100% 60%) 100%);
+    --gradient-hero: linear-gradient(135deg, hsl(33 100% 56%) 0%, hsl(44 100% 55%) 100%);
+    --gradient-cta: linear-gradient(135deg, hsl(25 89% 25%) 0%, hsl(25 89% 35%) 100%);
+    --gradient-accent: linear-gradient(135deg, hsl(44 100% 55%) 0%, hsl(44 100% 65%) 100%);
     
     --shadow-soft: 0 4px 20px rgba(0, 0, 0, 0.08);
-    --shadow-strong: 0 8px 30px rgba(227, 6, 19, 0.2);
+    --shadow-strong: 0 8px 30px rgba(107, 58, 17, 0.2);
     
     --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 

@@ -1,5 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { useIntersectionObserver } from "@/hooks/use-intersection-observer";
+import { LeadFormDialog } from "@/components/LeadFormDialog";
 
 const ImpactSection = () => {
   const { ref: titleRef, isVisible: titleVisible } = useIntersectionObserver();
@@ -60,17 +61,18 @@ const ImpactSection = () => {
                 </p>
               </div>
               
-              <Button
-                size="lg"
-                onClick={() => {
-                  if ((window as any).Typebot) {
-                    (window as any).Typebot.open();
-                  }
-                }}
-                className="bg-primary hover:bg-primary/90 text-primary-foreground font-display text-2xl md:text-3xl px-12 py-8 h-auto rounded-full shadow-[var(--shadow-strong)] hover:scale-105 transition-transform transform rotate-1"
-              >
-                CLIQUE AQUI!
-              </Button>
+              <LeadFormDialog
+                type="sell_items"
+                sourceSection="impact_section"
+                trigger={
+                  <Button
+                    size="lg"
+                    className="bg-primary hover:bg-primary/90 text-primary-foreground font-display text-2xl md:text-3xl px-12 py-8 h-auto rounded-full shadow-[var(--shadow-strong)] hover:scale-105 transition-transform transform rotate-1"
+                  >
+                    CLIQUE AQUI!
+                  </Button>
+                }
+              />
             </div>
           </div>
         </div>

@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Menu, X } from "lucide-react";
+import { LeadFormDialog } from "@/components/LeadFormDialog";
+import logo from "@/assets/logo cresci-header.png";
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -19,10 +21,7 @@ const Header = () => {
         <div className="flex items-center justify-between">
           {/* Logo */}
           <div className="flex items-center gap-2">
-            <div className="text-2xl md:text-3xl font-display text-primary">
-              CRESCI
-              <span className="text-accent">E</span>PERDI
-            </div>
+            <img src={logo} alt="Cresci e Perdi" className="h-10 md:h-12" />
           </div>
 
           {/* Desktop Menu */}
@@ -51,16 +50,17 @@ const Header = () => {
             >
               Franquia
             </button>
-            <Button
-              onClick={() => {
-                if ((window as any).Typebot) {
-                  (window as any).Typebot.open();
-                }
-              }}
-              className="bg-accent hover:bg-accent/90 text-accent-foreground font-bold shadow-lg hover:shadow-2xl hover:-translate-y-1 transition-all duration-300"
-            >
-              SEJA UM FRANQUEADO
-            </Button>
+            <LeadFormDialog
+              type="franchise"
+              sourceSection="header"
+              trigger={
+                <Button
+                  className="bg-accent hover:bg-accent/90 text-accent-foreground font-bold shadow-lg hover:shadow-2xl hover:-translate-y-1 transition-all duration-300"
+                >
+                  SEJA UM FRANQUEADO
+                </Button>
+              }
+            />
           </div>
 
           {/* Mobile Menu Button */}
@@ -101,16 +101,17 @@ const Header = () => {
               >
                 Franquia
               </button>
-              <Button
-                onClick={() => {
-                  if ((window as any).Typebot) {
-                    (window as any).Typebot.open();
-                  }
-                }}
-                className="bg-accent hover:bg-accent/90 text-accent-foreground font-bold shadow-lg hover:shadow-xl hover:-translate-y-0.5 transition-all duration-300"
-              >
-                SEJA UM FRANQUEADO
-              </Button>
+              <LeadFormDialog
+                type="franchise"
+                sourceSection="header_mobile"
+                trigger={
+                  <Button
+                    className="bg-accent hover:bg-accent/90 text-accent-foreground font-bold shadow-lg hover:shadow-xl hover:-translate-y-0.5 transition-all duration-300"
+                  >
+                    SEJA UM FRANQUEADO
+                  </Button>
+                }
+              />
             </div>
           </div>
         )}

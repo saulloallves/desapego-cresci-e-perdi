@@ -1,4 +1,5 @@
 import { Button } from "@/components/ui/button";
+import { LeadFormDialog } from "@/components/LeadFormDialog";
 const Hero = () => {
   return <section className="relative py-16 md:py-20 lg:py-24 flex items-center overflow-hidden">
       {/* Background */}
@@ -33,13 +34,18 @@ const Hero = () => {
                 <br />
                 PARA VOCÊ DESAPEGAR
               </p>
-              <Button size="lg" onClick={() => {
-              if ((window as any).Typebot) {
-                (window as any).Typebot.open();
-              }
-            }} className="bg-primary hover:bg-primary/90 text-primary-foreground font-display text-2xl md:text-3xl px-12 py-8 h-auto rounded-full shadow-[var(--shadow-strong)] hover:scale-105 transition-transform">
-                CLIQUE AQUI!
-              </Button>
+              <LeadFormDialog
+                type="sell_items"
+                sourceSection="hero"
+                trigger={
+                  <Button
+                    size="lg"
+                    className="bg-primary hover:bg-primary/90 text-primary-foreground font-display text-2xl md:text-3xl px-12 py-8 h-auto rounded-full shadow-[var(--shadow-strong)] hover:scale-105 transition-transform"
+                  >
+                    CLIQUE AQUI!
+                  </Button>
+                }
+              />
             </div>
           </div>
         </div>

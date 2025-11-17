@@ -1,6 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { Store, TrendingUp, Users, Heart } from "lucide-react";
 import { useIntersectionObserver } from "@/hooks/use-intersection-observer";
+import { LeadFormDialog } from "@/components/LeadFormDialog";
 
 const FranchiseSection = () => {
   const { ref: titleRef, isVisible: titleVisible } = useIntersectionObserver();
@@ -103,17 +104,18 @@ const FranchiseSection = () => {
                 ctaVisible ? 'opacity-100 scale-100' : 'opacity-0 scale-90'
               }`}
             >
-              <Button
-                size="lg"
-                onClick={() => {
-                  if ((window as any).Typebot) {
-                    (window as any).Typebot.open();
-                  }
-                }}
-                className="bg-accent hover:bg-accent/90 text-accent-foreground font-display text-2xl md:text-3xl px-12 py-8 h-auto rounded-full shadow-[var(--shadow-strong)] hover:shadow-2xl hover:scale-105 hover:-translate-y-2 transition-all duration-300"
-              >
-                SEJA UM FRANQUEADO
-              </Button>
+              <LeadFormDialog
+                type="franchise"
+                sourceSection="franchise_section"
+                trigger={
+                  <Button
+                    size="lg"
+                    className="bg-accent hover:bg-accent/90 text-accent-foreground font-display text-2xl md:text-3xl px-12 py-8 h-auto rounded-full shadow-[var(--shadow-strong)] hover:shadow-2xl hover:scale-105 hover:-translate-y-2 transition-all duration-300"
+                  >
+                    SEJA UM FRANQUEADO
+                  </Button>
+                }
+              />
               <p className="text-sm text-muted-foreground mt-4">
                 Entre em contato e descubra como levar essa transformação
                 para sua região!
