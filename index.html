@@ -26,11 +26,14 @@
     <script type="module" src="/src/main.tsx"></script>
     <script type="module">
       import Typebot from 'https://cdn.jsdelivr.net/npm/@typebot.io/js@0.3.59/dist/web.js'
+      
       Typebot.initPopup({
         typebot: "meu-typebot-jsfreuf",
         apiHost: "https://fluxoapi.contatocrescieperdi.com.br",
-        autoShowDelay: 5000,
       });
+      
+      // Expor globalmente para uso nos componentes React
+      window.Typebot = Typebot;
     </script>
   </body>
 </html>
