@@ -1,5 +1,4 @@
 import { Button } from "@/components/ui/button";
-import ctaImage from "@/assets/cta-final.png";
 
 const ImpactSection = () => {
   return (
@@ -23,13 +22,15 @@ const ImpactSection = () => {
           </div>
         </div>
 
-        {/* CTA with Image */}
+        {/* CTA with Gradient */}
         <div className="relative rounded-3xl overflow-hidden shadow-[var(--shadow-strong)] mb-16">
-          <div 
-            className="relative bg-cover bg-center min-h-[400px] flex items-center justify-center"
-            style={{ backgroundImage: `url(${ctaImage})` }}
-          >
-            <div className="absolute inset-0 bg-gradient-to-b from-transparent via-black/20 to-black/40"></div>
+          <div className="relative bg-gradient-to-br from-primary via-accent/50 to-accent min-h-[400px] flex items-center justify-center">
+            <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent"></div>
+            
+            {/* Decorative Pattern */}
+            <div className="absolute inset-0 opacity-5" style={{
+              backgroundImage: `url("data:image/svg+xml,%3Csvg width='80' height='80' viewBox='0 0 80 80' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23FFFFFF' fill-opacity='1'%3E%3Cpath d='M50 50c0-5.523 4.477-10 10-10s10 4.477 10 10-4.477 10-10 10c0 5.523-4.477 10-10 10s-10-4.477-10-10 4.477-10 10-10zM10 10c0-5.523 4.477-10 10-10s10 4.477 10 10-4.477 10-10 10c0 5.523-4.477 10-10 10S0 25.523 0 20s4.477-10 10-10zm10 8c4.418 0 8-3.582 8-8s-3.582-8-8-8-8 3.582-8 8 3.582 8 8 8zm40 40c4.418 0 8-3.582 8-8s-3.582-8-8-8-8 3.582-8 8 3.582 8 8 8z' /%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`,
+            }}></div>
             
             <div className="relative z-10 text-center px-4 py-12">
               <div className="bg-secondary/95 backdrop-blur-sm text-secondary-foreground inline-block px-8 py-6 rounded-2xl shadow-lg mb-6 transform -rotate-1">
