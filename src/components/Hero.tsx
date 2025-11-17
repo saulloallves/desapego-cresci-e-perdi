@@ -2,7 +2,7 @@ import { Button } from "@/components/ui/button";
 
 const Hero = () => {
   return (
-    <section className="relative min-h-screen pt-20 flex items-center overflow-hidden">
+    <section className="relative py-16 md:py-20 lg:py-24 flex items-center overflow-hidden">
       {/* Background Gradient */}
       <div className="absolute inset-0 bg-gradient-to-br from-secondary via-accent/30 to-background">
         {/* Decorative Pattern */}
