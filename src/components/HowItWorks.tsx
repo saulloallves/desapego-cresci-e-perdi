@@ -1,0 +1,88 @@
+import { Coins, Sparkles, Heart, Home } from "lucide-react";
+
+const HowItWorks = () => {
+  const benefits = [
+    {
+      icon: Coins,
+      title: "Economize",
+      description: "ao vender seus itens seminovos, você ganha um valor que pode ser usado para renovar o guarda-roupa ou a brinquedoteca dos seus filhos.",
+    },
+    {
+      icon: Sparkles,
+      title: "Ganhe espaço",
+      description: "seu armário fica mais organizado, com apenas o que realmente é necessário.",
+    },
+    {
+      icon: Home,
+      title: "Dê um novo propósito",
+      description: "seus itens ganham uma nova chance.",
+    },
+    {
+      icon: Heart,
+      title: "Ajude outras famílias",
+      description: "o que para você já não tem uso, pode ser exatamente o que outra pessoa estava procurando.",
+    },
+  ];
+
+  return (
+    <section id="como-funciona" className="py-16 md:py-24 bg-curve-bg wavy-bg">
+      <div className="container mx-auto px-4">
+        <div className="max-w-5xl mx-auto">
+          <div className="text-center mb-12">
+            <h2 className="font-display text-4xl md:text-5xl lg:text-6xl text-primary mb-8">
+              COMO FUNCIONA O DESAPEGO?
+            </h2>
+          </div>
+
+          <div className="bg-background rounded-3xl p-8 md:p-12 shadow-[var(--shadow-soft)] mb-12">
+            <p className="text-lg md:text-xl leading-relaxed text-center mb-8">
+              Desapegar com a Cresci e Perdi é simples e vantajoso! Ao trazer seus
+              itens seminovos, como roupas, calçados e brinquedos infantis, para uma
+              de nossas lojas, você tem a oportunidade de receber dinheiro ou
+              giracrédito na loja para adquirir novos produtos, que passaram por uma
+              curadoria de qualidade e estão disponíveis por preços mais acessíveis.
+            </p>
+
+            <div className="grid md:grid-cols-2 gap-6">
+              {benefits.map((benefit, index) => {
+                const Icon = benefit.icon;
+                return (
+                  <div
+                    key={index}
+                    className="bg-curve-bg rounded-2xl p-6 shadow-sm hover:shadow-md transition-shadow"
+                  >
+                    <div className="flex items-start gap-4">
+                      <div className="bg-accent text-accent-foreground p-3 rounded-full flex-shrink-0">
+                        <Icon size={24} />
+                      </div>
+                      <div>
+                        <h4 className="font-bold text-xl text-primary mb-2">
+                          {benefit.title}:
+                        </h4>
+                        <p className="text-base leading-relaxed text-foreground">
+                          {benefit.description}
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+
+          <div className="bg-secondary text-secondary-foreground rounded-3xl p-8 md:p-12 shadow-lg text-center">
+            <p className="text-lg md:text-xl leading-relaxed">
+              Esse processo não só beneficia você financeiramente, mas também
+              contribui com um ciclo de consumo mais consciente e duradouro.
+              Ao escolher a Cresci e Perdi, você faz parte de um movimento que
+              promove uma economia mais circular, onde nada é descartado sem
+              antes ser reutilizado e valorizado.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+};
+
+export default HowItWorks;
