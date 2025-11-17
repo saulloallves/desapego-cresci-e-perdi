@@ -57,7 +57,7 @@ const Header = () => {
                   (window as any).Typebot.open();
                 }
               }}
-              className="bg-accent hover:bg-accent/90 text-accent-foreground font-bold shadow-lg"
+              className="bg-accent hover:bg-accent/90 text-accent-foreground font-bold shadow-lg hover:shadow-2xl hover:-translate-y-1 transition-all duration-300"
             >
               SEJA UM FRANQUEADO
             </Button>
@@ -107,7 +107,7 @@ const Header = () => {
                     (window as any).Typebot.open();
                   }
                 }}
-                className="bg-accent hover:bg-accent/90 text-accent-foreground font-bold"
+                className="bg-accent hover:bg-accent/90 text-accent-foreground font-bold shadow-lg hover:shadow-xl hover:-translate-y-0.5 transition-all duration-300"
               >
                 SEJA UM FRANQUEADO
               </Button>

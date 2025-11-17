@@ -110,7 +110,7 @@ const FranchiseSection = () => {
                     (window as any).Typebot.open();
                   }
                 }}
-                className="bg-accent hover:bg-accent/90 text-accent-foreground font-display text-2xl md:text-3xl px-12 py-8 h-auto rounded-full shadow-[var(--shadow-strong)] hover:scale-105 transition-transform"
+                className="bg-accent hover:bg-accent/90 text-accent-foreground font-display text-2xl md:text-3xl px-12 py-8 h-auto rounded-full shadow-[var(--shadow-strong)] hover:shadow-2xl hover:scale-105 hover:-translate-y-2 transition-all duration-300"
               >
                 SEJA UM FRANQUEADO
               </Button>
