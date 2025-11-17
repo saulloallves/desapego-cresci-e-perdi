@@ -1,4 +1,5 @@
 import { Button } from "@/components/ui/button";
+import ctaImage from "@/assets/cta-final.png";
 
 const ImpactSection = () => {
   return (
@@ -22,10 +23,13 @@ const ImpactSection = () => {
           </div>
         </div>
 
-        {/* CTA with Gradient */}
+        {/* CTA with Image */}
         <div className="relative rounded-3xl overflow-hidden shadow-[var(--shadow-strong)] mb-16">
-          <div className="relative bg-gradient-to-br from-accent via-secondary to-primary min-h-[400px] flex items-center justify-center">
-            <div className="absolute inset-0 bg-gradient-to-b from-transparent via-black/10 to-black/20"></div>
+          <div 
+            className="relative bg-cover bg-center min-h-[400px] flex items-center justify-center"
+            style={{ backgroundImage: `url(${ctaImage})` }}
+          >
+            <div className="absolute inset-0 bg-gradient-to-b from-transparent via-black/20 to-black/40"></div>
             
             <div className="relative z-10 text-center px-4 py-12">
               <div className="bg-secondary/95 backdrop-blur-sm text-secondary-foreground inline-block px-8 py-6 rounded-2xl shadow-lg mb-6 transform -rotate-1">
