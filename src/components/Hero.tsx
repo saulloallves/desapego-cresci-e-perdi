@@ -2,7 +2,7 @@ import { Button } from "@/components/ui/button";
 const Hero = () => {
   return <section className="relative py-16 md:py-20 lg:py-24 flex items-center overflow-hidden">
       {/* Background */}
-      <div className="absolute inset-0 bg-secondary"></div>
+      <div className="absolute inset-0 bg-primary"></div>
 
       {/* Content */}
       <div className="container mx-auto px-4 relative z-10">
