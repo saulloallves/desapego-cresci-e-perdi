@@ -1,6 +1,12 @@
 import { Coins, Sparkles, Heart, Home } from "lucide-react";
+import { useIntersectionObserver } from "@/hooks/use-intersection-observer";
 
 const HowItWorks = () => {
+  const { ref: titleRef, isVisible: titleVisible } = useIntersectionObserver();
+  const { ref: textRef, isVisible: textVisible } = useIntersectionObserver();
+  const { ref: cardsRef, isVisible: cardsVisible } = useIntersectionObserver();
+  const { ref: ctaRef, isVisible: ctaVisible } = useIntersectionObserver();
+
   const benefits = [
     {
       icon: Coins,
@@ -28,13 +34,22 @@ const HowItWorks = () => {
     <section id="como-funciona" className="py-16 md:py-24 bg-curve-bg wavy-bg">
       <div className="container mx-auto px-4">
         <div className="max-w-5xl mx-auto">
-          <div className="text-center mb-12">
-            <h2 className="font-display text-4xl md:text-5xl lg:text-6xl text-primary mb-8">
+          {/* Título com fade-in */}
+          <div ref={titleRef} className="text-center mb-12">
+            <h2 className={`font-display text-4xl md:text-5xl lg:text-6xl text-primary mb-8 transition-all duration-700 ${
+              titleVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
+            }`}>
               COMO FUNCIONA O DESAPEGO?
             </h2>
           </div>
 
-          <div className="bg-background rounded-3xl p-8 md:p-12 shadow-[var(--shadow-soft)] mb-12">
+          {/* Card de texto com slide-up */}
+          <div 
+            ref={textRef}
+            className={`bg-background rounded-3xl p-8 md:p-12 shadow-[var(--shadow-soft)] mb-12 transition-all duration-700 ${
+              textVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-20'
+            }`}
+          >
             <p className="text-lg md:text-xl leading-relaxed text-center mb-8">
               Desapegar com a Cresci e Perdi é simples e vantajoso! Ao trazer seus
               itens seminovos, como roupas, calçados e brinquedos infantis, para uma
@@ -43,13 +58,20 @@ const HowItWorks = () => {
               curadoria de qualidade e estão disponíveis por preços mais acessíveis.
             </p>
 
-            <div className="grid md:grid-cols-2 gap-6">
+            {/* Grid de benefícios com animação escalonada */}
+            <div ref={cardsRef} className="grid md:grid-cols-2 gap-6">
               {benefits.map((benefit, index) => {
                 const Icon = benefit.icon;
+                const delay = index * 100;
                 return (
                   <div
                     key={index}
-                    className="bg-curve-bg rounded-2xl p-6 shadow-sm hover:shadow-md transition-shadow"
+                    className="bg-curve-bg rounded-2xl p-6 shadow-sm hover:shadow-md transition-all duration-700"
+                    style={{
+                      transitionDelay: `${delay}ms`,
+                      opacity: cardsVisible ? 1 : 0,
+                      transform: cardsVisible ? 'translateY(0)' : 'translateY(20px)'
+                    }}
                   >
                     <div className="flex items-start gap-4">
                       <div className="bg-accent text-accent-foreground p-3 rounded-full flex-shrink-0">
@@ -70,7 +92,13 @@ const HowItWorks = () => {
             </div>
           </div>
 
-          <div className="bg-secondary text-secondary-foreground rounded-3xl p-8 md:p-12 shadow-lg text-center">
+          {/* CTA final com scale-in */}
+          <div 
+            ref={ctaRef}
+            className={`bg-secondary text-secondary-foreground rounded-3xl p-8 md:p-12 shadow-lg text-center transition-all duration-700 ${
+              ctaVisible ? 'opacity-100 scale-100' : 'opacity-0 scale-95'
+            }`}
+          >
             <p className="text-lg md:text-xl leading-relaxed">
               Esse processo não só beneficia você financeiramente, mas também
               contribui com um ciclo de consumo mais consciente e duradouro.
