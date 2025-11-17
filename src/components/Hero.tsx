@@ -40,17 +40,15 @@ const Hero = () => {
                 PARA VOCÊ DESAPEGAR
               </p>
               <Button
-                asChild
                 size="lg"
+                onClick={() => {
+                  if ((window as any).Typebot) {
+                    (window as any).Typebot.open();
+                  }
+                }}
                 className="bg-primary hover:bg-primary/90 text-primary-foreground font-display text-2xl md:text-3xl px-12 py-8 h-auto rounded-full shadow-[var(--shadow-strong)] hover:scale-105 transition-transform"
               >
-                <a
-                  href="https://crescieperdi.com.br/unidades"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  CLIQUE AQUI!
-                </a>
+                CLIQUE AQUI!
               </Button>
             </div>
           </div>
