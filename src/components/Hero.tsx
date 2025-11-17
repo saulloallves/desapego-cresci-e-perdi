@@ -15,7 +15,7 @@ const Hero = () => {
       <div className="container mx-auto px-4 relative z-10">
         <div className="grid lg:grid-cols-2 gap-8 items-center">
           {/* Left Side - Main Message */}
-          <div className="text-center lg:text-left">
+          <div className="text-center lg:text-left animate-fade-in-up">
             <div className="bg-primary text-primary-foreground inline-block px-8 py-4 rounded-2xl shadow-[var(--shadow-strong)] mb-6 transform -rotate-1">
               <h1 className="font-display text-3xl md:text-5xl lg:text-6xl leading-tight">
                 NÃO SERVE MAIS
@@ -31,7 +31,9 @@ const Hero = () => {
           </div>
 
           {/* Right Side - CTA */}
-          <div className="flex flex-col items-center lg:items-end gap-6">
+          <div className="flex flex-col items-center lg:items-end gap-6" style={{
+            animation: "fade-in-up 0.6s ease-out 0.3s both"
+          }}>
             <div className="bg-secondary text-secondary-foreground px-8 py-6 rounded-2xl shadow-lg text-center transform rotate-1">
               <p className="font-bold text-xl md:text-2xl mb-4">
                 A UNIDADE MAIS PRÓXIMA

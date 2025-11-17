@@ -1,16 +1,30 @@
 import { Button } from "@/components/ui/button";
+import { useIntersectionObserver } from "@/hooks/use-intersection-observer";
 
 const ImpactSection = () => {
+  const { ref: titleRef, isVisible: titleVisible } = useIntersectionObserver();
+  const { ref: textRef, isVisible: textVisible } = useIntersectionObserver();
+  const { ref: ctaRef, isVisible: ctaVisible } = useIntersectionObserver();
+  const { ref: finalRef, isVisible: finalVisible } = useIntersectionObserver();
+
   return (
     <section className="py-16 md:py-24 bg-background">
       <div className="container mx-auto px-4">
         {/* Impact Text */}
-        <div className="max-w-4xl mx-auto text-center mb-16">
-          <h2 className="font-display text-4xl md:text-5xl lg:text-6xl text-primary mb-8">
+        {/* Título com fade-in */}
+        <div ref={titleRef} className="max-w-4xl mx-auto text-center mb-16">
+          <h2 className={`font-display text-4xl md:text-5xl lg:text-6xl text-primary mb-8 transition-all duration-700 ${
+            titleVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
+          }`}>
             O IMPACTO DO DESAPEGO
           </h2>
           
-          <div className="bg-curve-bg rounded-3xl p-8 md:p-12 shadow-[var(--shadow-soft)] wavy-bg">
+          <div 
+            ref={textRef}
+            className={`bg-curve-bg rounded-3xl p-8 md:p-12 shadow-[var(--shadow-soft)] wavy-bg transition-all duration-700 delay-200 ${
+              textVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-20'
+            }`}
+          >
             <p className="text-lg md:text-xl leading-relaxed">
               Ao desapegar com a Cresci e Perdi, você ajuda outras famílias
               a acessarem produtos de qualidade, com economia e sem abrir mão
@@ -22,8 +36,13 @@ const ImpactSection = () => {
           </div>
         </div>
 
-        {/* CTA with Gradient */}
-        <div className="relative rounded-3xl overflow-hidden shadow-[var(--shadow-strong)] mb-16">
+        {/* CTA com gradient - slide-up */}
+        <div 
+          ref={ctaRef}
+          className={`relative rounded-3xl overflow-hidden shadow-[var(--shadow-strong)] mb-16 transition-all duration-700 ${
+            ctaVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-30'
+          }`}
+        >
           <div className="relative bg-gradient-to-br from-primary via-accent/50 to-accent min-h-[400px] flex items-center justify-center">
             <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent"></div>
             
@@ -57,8 +76,11 @@ const ImpactSection = () => {
         </div>
 
         {/* Transform Message */}
-        <div className="max-w-4xl mx-auto text-center">
-          <div className="bg-gradient-to-br from-accent/20 to-secondary/20 rounded-3xl p-8 md:p-12 shadow-lg border-2 border-accent/30">
+        {/* Mensagem final com scale-in */}
+        <div ref={finalRef} className="max-w-4xl mx-auto text-center">
+          <div className={`bg-gradient-to-br from-accent/20 to-secondary/20 rounded-3xl p-8 md:p-12 shadow-lg border-2 border-accent/30 transition-all duration-700 ${
+            finalVisible ? 'opacity-100 scale-100' : 'opacity-0 scale-95'
+          }`}>
             <p className="text-lg md:text-xl leading-relaxed font-semibold">
               A Cresci e Perdi acredita que o desapego é uma forma de crescer
               e transformar. Ele traz não só benefícios materiais, mas também

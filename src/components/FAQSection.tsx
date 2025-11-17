@@ -4,8 +4,12 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
+import { useIntersectionObserver } from "@/hooks/use-intersection-observer";
 
 const FAQSection = () => {
+  const { ref: titleRef, isVisible: titleVisible } = useIntersectionObserver();
+  const { ref: accordionRef, isVisible: accordionVisible } = useIntersectionObserver();
+
   const faqs = [
     {
       question: "Quais itens vocês aceitam?",
@@ -38,11 +42,20 @@ const FAQSection = () => {
     <section id="faq" className="py-16 md:py-24 bg-curve-bg wavy-bg">
       <div className="container mx-auto px-4">
         <div className="max-w-3xl mx-auto">
-          <h2 className="font-display text-4xl md:text-5xl lg:text-6xl text-primary text-center mb-12">
-            DÚVIDAS FREQUENTES
-          </h2>
+          <div ref={titleRef}>
+            <h2 className={`font-display text-4xl md:text-5xl lg:text-6xl text-primary text-center mb-12 transition-all duration-700 ${
+              titleVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
+            }`}>
+              DÚVIDAS FREQUENTES
+            </h2>
+          </div>
 
-          <div className="bg-background rounded-3xl p-6 md:p-8 shadow-[var(--shadow-soft)]">
+          <div 
+            ref={accordionRef}
+            className={`bg-background rounded-3xl p-6 md:p-8 shadow-[var(--shadow-soft)] transition-all duration-700 delay-200 ${
+              accordionVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-20'
+            }`}
+          >
             <Accordion type="single" collapsible className="w-full">
               {faqs.map((faq, index) => (
                 <AccordionItem key={index} value={`item-${index}`}>
