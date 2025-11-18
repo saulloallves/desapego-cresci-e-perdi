@@ -55,7 +55,7 @@ const Header = () => {
               sourceSection="header"
               trigger={
                 <Button
-                  className="bg-accent hover:bg-accent/90 text-accent-foreground font-bold shadow-lg hover:shadow-2xl hover:-translate-y-1 transition-all duration-300"
+                  className="bg-[#00aeff] hover:bg-[#00aeff]/90 text-white font-bold shadow-lg hover:shadow-2xl hover:-translate-y-1 transition-all duration-300"
                 >
                   SEJA UM FRANQUEADO
                 </Button>

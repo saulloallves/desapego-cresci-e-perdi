@@ -21,13 +21,15 @@ const leadSchema = z.object({
   name: z
     .string()
     .min(2, "Digite pelo menos 2 letras")
-    .max(100, "Nome muito longo")
-    .optional()
-    .or(z.literal("")),
+    .max(100, "Nome muito longo"),
   phone: z
     .string()
-    .min(10, "Digite um WhatsApp válido")
-    .max(20, "Telefone muito longo"),
+    .min(1, "Digite um WhatsApp válido")
+    .regex(/^[\d\s()-]+$/, "Digite apenas números")
+    .transform((val) => val.replace(/\D/g, ""))
+    .refine((val) => val.length >= 10 && val.length <= 11, {
+      message: "Digite um telefone válido (10 ou 11 dígitos)",
+    }),
   city: z
     .string()
     .max(100, "Cidade muito longa")
@@ -48,6 +50,7 @@ export function LeadFormDialog({ type, sourceSection, trigger }: LeadFormDialogP
   const { toast } = useToast();
   const navigate = useNavigate();
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [phoneDisplay, setPhoneDisplay] = useState("");
 
   const form = useForm<LeadFormValues>({
     resolver: zodResolver(leadSchema),
@@ -60,12 +63,41 @@ export function LeadFormDialog({ type, sourceSection, trigger }: LeadFormDialogP
 
   const isFranchise = type === "franchise";
 
+  // Função para formatar telefone brasileiro
+  const formatPhoneBR = (value: string) => {
+    // Remove tudo que não é número
+    const numbers = value.replace(/\D/g, "");
+    
+    // Formata conforme o tamanho
+    if (numbers.length <= 10) {
+      // (XX) XXXX-XXXX
+      return numbers
+        .replace(/^(\d{2})(\d)/g, "($1) $2")
+        .replace(/(\d{4})(\d)/, "$1-$2");
+    } else {
+      // (XX) XXXXX-XXXX
+      return numbers
+        .replace(/^(\d{2})(\d)/g, "($1) $2")
+        .replace(/(\d{5})(\d)/, "$1-$2");
+    }
+  };
+
+  const handlePhoneChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const value = e.target.value;
+    const formatted = formatPhoneBR(value);
+    setPhoneDisplay(formatted);
+    
+    // Salva apenas números no form
+    const numbersOnly = value.replace(/\D/g, "");
+    form.setValue("phone", numbersOnly);
+  };
+
   const handleSubmit = async (values: LeadFormValues) => {
     setIsSubmitting(true);
     try {
       const result = await createLead({
         type,
-        name: values.name || undefined,
+        name: values.name,
         phone: values.phone,
         city: values.city || undefined,
         sourceSection,
@@ -80,6 +112,7 @@ export function LeadFormDialog({ type, sourceSection, trigger }: LeadFormDialogP
 
       form.reset();
       setOpen(false);
+      setPhoneDisplay("");
 
       // Redirect to find unit page for sell_items type
       if (!isFranchise && result?.id) {
@@ -116,7 +149,7 @@ export function LeadFormDialog({ type, sourceSection, trigger }: LeadFormDialogP
           onSubmit={form.handleSubmit(handleSubmit)}
         >
           <div className="space-y-2">
-            <label className="block text-sm font-medium">Nome (opcional)</label>
+            <label className="block text-sm font-medium">Nome</label>
             <Input
               placeholder="Seu nome"
               {...form.register("name")}
@@ -130,7 +163,9 @@ export function LeadFormDialog({ type, sourceSection, trigger }: LeadFormDialogP
             <label className="block text-sm font-medium">WhatsApp</label>
             <Input
               placeholder="(00) 00000-0000"
-              {...form.register("phone")}
+              value={phoneDisplay}
+              onChange={handlePhoneChange}
+              maxLength={15}
             />
             {form.formState.errors.phone && (
               <p className="text-sm text-red-500">{form.formState.errors.phone.message}</p>

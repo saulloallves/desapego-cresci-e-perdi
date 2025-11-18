@@ -59,8 +59,8 @@ export default {
         },
       },
       fontFamily: {
-        display: ['Luckiest Guy', 'cursive'],
-        sans: ['Bebas Neue', 'sans-serif'],
+        display: ['Poppins', 'sans-serif'],
+        sans: ['Poppins', 'sans-serif'],
       },
       borderRadius: {
         lg: "var(--radius)",

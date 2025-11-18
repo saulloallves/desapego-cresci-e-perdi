@@ -1,9 +1,9 @@
 import { Facebook, Instagram } from "lucide-react";
-import logo from "@/assets/logo cresci-header.png";
+import logo from "@/assets/logo-branco.png";
 
 const Footer = () => {
   return (
-    <footer className="bg-[#00aeff] text-primary-foreground py-12">
+    <footer className="bg-secondary text-primary-foreground py-12">
       <div className="container mx-auto px-4">
         <div className="flex flex-col items-center gap-6">
           {/* Logo */}
