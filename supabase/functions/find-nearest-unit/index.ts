@@ -148,7 +148,7 @@ serve(async (req)=> {
     const testMakeUnitId = 'c8d293c7-a23c-413b-a158-4f1f7ada5a91'
     const { data: units, error: unitsError } = await matrizClient
       .from('unidades')
-      .select('id, group_name, fantasy_name, address, number_address, neighborhood, city, state, uf, postal_code, phone, instagram_profile')
+      .select('id, group_name, fantasy_name, address, number_address, neighborhood, city, state, uf, postal_code, phone, instagram_profile, operation_mon, operation_tue, operation_wed, operation_thu, operation_fri, operation_sat, operation_sun')
       .eq('is_active', true)
       .eq('purchases_active', true)
       .neq('id', testMakeUnitId)
@@ -278,7 +278,8 @@ serve(async (req)=> {
         nearestUnits: sortedUnits.map(unit => ({
           id: unit.id,
           name: unit.fantasy_name || unit.group_name,
-          address: `${unit.address}, ${unit.number_address}`,
+          address: unit.address,
+          number_address: unit.number_address,
           neighborhood: unit.neighborhood,
           city: unit.city,
           state: unit.state,
@@ -288,7 +289,14 @@ serve(async (req)=> {
           instagram: unit.instagram_profile,
           latitude: unit.latitude,
           longitude: unit.longitude,
-          distance: Math.round(unit.distance * 10) / 10, // Round to 1 decimal
+          distance: Math.round(unit.distance * 10) / 10,
+          operation_mon: unit.operation_mon,
+          operation_tue: unit.operation_tue,
+          operation_wed: unit.operation_wed,
+          operation_thu: unit.operation_thu,
+          operation_fri: unit.operation_fri,
+          operation_sat: unit.operation_sat,
+          operation_sun: unit.operation_sun,
         })),
         clientLocation: {
           latitude: clientLocation.lat,

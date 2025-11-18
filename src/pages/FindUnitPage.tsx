@@ -12,8 +12,17 @@ import {
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { useToast } from "@/hooks/use-toast";
-import { MapPin, Phone, Instagram, Navigation, Share2, ArrowLeft } from "lucide-react";
+import {
+  MapPin,
+  Phone,
+  Instagram,
+  Navigation,
+  Share2,
+  ArrowLeft,
+  Info,
+} from "lucide-react";
 import logo from "@/assets/logo cresci-header.png";
+import UnitInfoModal from "@/components/UnitInfoModal";
 
 const searchSchema = z.object({
   address: z.string().min(5, "Digite um endereço ou CEP válido"),
@@ -25,6 +34,7 @@ interface NearestUnit {
   id: string;
   name: string;
   address: string;
+  number_address: string;
   neighborhood: string;
   city: string;
   state: string;
@@ -35,6 +45,13 @@ interface NearestUnit {
   latitude: number;
   longitude: number;
   distance: number;
+  operation_mon: string;
+  operation_tue: string;
+  operation_wed: string;
+  operation_thu: string;
+  operation_fri: string;
+  operation_sat: string;
+  operation_sun: string;
 }
 
 interface ClientLocation {
@@ -74,7 +91,14 @@ const FindUnitPage = () => {
   const [map, setMap] = useState<google.maps.Map | null>(null);
   const [selectedRoute, setSelectedRoute] = useState<RouteDetails | null>(null);
   const [isLoadingRoute, setIsLoadingRoute] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [selectedUnit, setSelectedUnit] = useState<NearestUnit | null>(null);
   const mapContainerRef = useRef<HTMLDivElement>(null);
+
+  const handleOpenModal = (unit: NearestUnit) => {
+    setSelectedUnit(unit);
+    setIsModalOpen(true);
+  };
 
   const leadId = searchParams.get("leadId");
 
@@ -474,36 +498,25 @@ const FindUnitPage = () => {
                       </div>
 
                       <div className="flex-1">
-                        <h3 className="font-bold text-xl text-primary mb-1">
-                          {unit.name}
-                        </h3>
-                        <p className="text-sm">
-                          📍 {unit.address}, {unit.neighborhood}
-                        </p>
-                        <p className="text-sm">
-                          {unit.city} - {unit.uf} | CEP: {unit.postalCode}
-                        </p>
-                        <p className="text-accent font-bold text-lg mt-1">
-                          📏 {unit.distance} km de você
-                        </p>
+                        <div className="flex justify-between items-start gap-4">
+                          <h3 className="font-bold text-xl text-primary">
+                            {unit.name}
+                          </h3>
+                          <p className="text-black font-bold text-lg whitespace-nowrap">
+                            📏 {unit.distance} km
+                          </p>
+                        </div>
                       </div>
                     </div>
 
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-2 mt-4">
-                      {unit.phone && (
-                        <a
-                          href={`https://wa.me/55${unit.phone.replace(
-                            /\D/g,
-                            ""
-                          )}`}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="flex items-center justify-center gap-2 bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-full transition-colors text-sm"
-                        >
-                          <Phone size={16} />
-                          <span className="font-semibold">WhatsApp</span>
-                        </a>
-                      )}
+                      <button
+                        onClick={() => handleOpenModal(unit)}
+                        className="flex items-center justify-center gap-2 bg-secondary hover:bg-secondary/80 text-white px-4 py-2 rounded-full transition-colors text-sm"
+                      >
+                        <Info size={16} />
+                        <span className="font-semibold">Mais Informações</span>
+                      </button>
 
                       {unit.instagram && (
                         <a
@@ -690,6 +703,7 @@ const FindUnitPage = () => {
                     </p>
                     <p className="font-semibold">
                       {selectedRoute.unit.address},{" "}
+                      {selectedRoute.unit.number_address},{" "}
                       {selectedRoute.unit.neighborhood}
                     </p>
                     <p className="text-sm">
@@ -709,15 +723,18 @@ const FindUnitPage = () => {
                     <Share2 size={24} />
                     <span className="font-bold">Compartilhar Rota</span>
                   </Button>
-
-                  <p className="text-xs text-muted-foreground text-center mt-3">
-                    Compartilhe com amigos ou salve para depois
-                  </p>
                 </div>
               </div>
             </div>
           </div>
         )}
+
+        {/* Unit Info Modal */}
+        <UnitInfoModal
+          unit={selectedUnit}
+          isOpen={isModalOpen}
+          onClose={() => setIsModalOpen(false)}
+        />
       </main>
     </div>
   );
