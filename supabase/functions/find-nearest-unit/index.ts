@@ -145,11 +145,13 @@ serve(async (req)=> {
     // 2. Get active units from matriz (without lat/lng)
     console.log('Fetching active units from matriz...')
     const matrizClient = createClient(matrizUrl, matrizKey)
+    const testMakeUnitId = 'c8d293c7-a23c-413b-a158-4f1f7ada5a91'
     const { data: units, error: unitsError } = await matrizClient
       .from('unidades')
       .select('id, group_name, fantasy_name, address, number_address, neighborhood, city, state, uf, postal_code, phone, instagram_profile')
       .eq('is_active', true)
       .eq('purchases_active', true)
+      .neq('id', testMakeUnitId)
 
     if (unitsError) {
       console.error('Error fetching units:', unitsError)

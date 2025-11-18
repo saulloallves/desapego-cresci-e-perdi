@@ -5,8 +5,6 @@ import lojaGirafa from "@/assets/loja-girafa.png";
 
 const ImpactSection = () => {
   const { ref: titleRef, isVisible: titleVisible } = useIntersectionObserver();
-  const { ref: textRef, isVisible: textVisible } = useIntersectionObserver();
-  const { ref: ctaRef, isVisible: ctaVisible } = useIntersectionObserver();
   const { ref: finalRef, isVisible: finalVisible } = useIntersectionObserver();
 
   return (
@@ -26,30 +24,29 @@ const ImpactSection = () => {
         </div>
         <div
           ref={finalRef}
-          className={`bg-gradient-to-br from-accent/30 to-secondary/30 rounded-3xl p-8 md:p-10 shadow-lg border-2 border-accent/30 transition-all duration-700 ${
+          className={`bg-gradient-to-br from-accent/30 to-secondary/30 rounded-3xl p-4 md:p-8 lg:p-10 shadow-lg border-2 border-accent/30 transition-all duration-700 ${
             finalVisible ? "opacity-100 scale-100" : "opacity-0 scale-95"
           }`}
         >
-          <div className="grid lg:grid-cols-2 gap-0 items-center">
+          <div className="grid lg:grid-cols-2 gap-4 md:gap-6 lg:gap-8 items-center">
             {/* Imagem à esquerda */}
             <div className="flex justify-center lg:justify-center">
               <img
                 src={lojaGirafa}
                 alt="Loja Cresci e Perdi"
-                className="w-full max-w-sm"
+                className="w-full max-w-[250px] md:max-w-xs lg:max-w-sm"
               />
             </div>
 
             {/* Texto e botão à direita */}
-            <div className="justify-center items-center text-center" style={{ gap: '2.5rem', display: 'flex', flexDirection: 'column' }}>
-              <p className="text-base md:text-lg lg:text-xl leading-relaxed font-semibold mb-6">
+            <div className="flex flex-col justify-center items-center text-center gap-4 md:gap-6 lg:gap-10">
+              <p className="text-lg md:text-2xl lg:text-4xl font-display text-secondary uppercase font-black leading-tight">
+                Venha fazer parte dessa transformação!
+              </p>
+              <p className="text-sm md:text-base lg:text-xl leading-relaxed font-semibold px-2">
                 A Cresci e Perdi acredita que o desapego é uma forma de crescer e
                 transformar. Ele traz não só benefícios materiais, mas também o
-                sentimento de fazer parte de algo maior: a construção de um futuro
-                mais consciente para todos.
-              </p>
-              <p className="text-xl md:text-2xl lg:text-3xl font-display text-primary mb-6">
-                Venha fazer parte dessa transformação!
+                sentimento de fazer parte de algo maior.
               </p>
               <LeadFormDialog
                 type="sell_items"
@@ -57,9 +54,9 @@ const ImpactSection = () => {
                 trigger={
                   <Button
                     size="lg"
-                    className="w-full lg:w-auto font-black bg-secondary hover:bg-secondary/90 text-primary-foreground font-display text-xl md:text-2xl px-10 py-6 md:py-8 h-auto rounded-full shadow-[var(--shadow-strong)] hover:scale-105 transition-transform"
+                    className="w-full lg:w-auto font-black bg-[#00aeff] hover:bg-[#00aeff]/90 text-primary-foreground font-display text-base md:text-xl lg:text-2xl px-6 md:px-10 py-4 md:py-6 lg:py-8 h-auto rounded-full shadow-[var(--shadow-strong)] hover:scale-105 transition-transform"
                   >
-                    CLIQUE AQUI!
+                    CLIQUE AQUI E DESAPEGUE!
                   </Button>
                 }
               />

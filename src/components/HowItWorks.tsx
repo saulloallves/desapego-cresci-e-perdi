@@ -11,19 +11,19 @@ const HowItWorks = () => {
   const benefits = [
     {
       icon: "moeda",
-      title: "Giracrédito",
+      title: "GIRA",
       description:
-        "Ao vender seus itens seminovos, você ganha um valor que pode ser usado para renovar o guarda-roupa ou a brinquedoteca dos seus filhos.",
+        "Ao vender, você recebe em PIX, ou em GIRA, crédito da Cresci e Perdi que vale mais que dinheiro, e ele pode ser usado na compra de novos itens nas lojas.",
     },
     {
       icon: Sparkles,
       title: "Variedade de Itens",
       description:
-        "Temos de tudo um pouco: roupas, calçados e brinquedos infantis em ótimo estado, prontos para uma nova aventura com outra família.",
+        "Compramos tudo do universo infantil: roupas, calçados e brinquedos infantis em ótimo estado, para que outras famílias possam aproveitar.",
     },
     {
       icon: Home,
-      title: "Facilidade e Conveniência",
+      title: "Facilidade no Desapego",
       description: "Ao chegar na loja, nossa equipe cuida de todo o processo de avaliação e compra dos seus itens, tornando tudo rápido e simples para você.",
     },
     {
@@ -63,7 +63,7 @@ const HowItWorks = () => {
             <p className="text-lg md:text-xl leading-relaxed text-center mb-8">
               Fazer isso é muito fácil: Separa tudo que os seus filhos não usam
               mais, leva até a loja mais próxima e pronto! <br></br>Você recebe PIX na
-              hora, ou <span className="font-bold text-secondary">Giracrédito</span>, que vale mais do que dinheiro, e para quem
+              hora, ou <span className="font-bold text-secondary">GIRA</span>, que vale mais do que dinheiro, e para quem
               quer só comprar, esse é o lugar para você economizar.
             </p>
 
@@ -101,7 +101,7 @@ const HowItWorks = () => {
                       )}
                       <div>
                         <h4 className="font-bold text-xl text-primary mb-2">
-                          {benefit.title}:
+                          {benefit.title}
                         </h4>
                         <p className="text-base leading-relaxed text-foreground">
                           {benefit.description}
