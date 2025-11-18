@@ -46,7 +46,7 @@ const HowItWorks = () => {
           {/* Card de texto com slide-up */}
           <div 
             ref={textRef}
-            className={`bg-background rounded-3xl p-8 md:p-12 shadow-[var(--shadow-soft)] mb-12 transition-all duration-700 ${
+            className={`bg-white/80 backdrop-blur-sm rounded-3xl p-8 md:p-12 shadow-[var(--shadow-soft)] mb-12 transition-all duration-700 ${
               textVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-20'
             }`}
           >

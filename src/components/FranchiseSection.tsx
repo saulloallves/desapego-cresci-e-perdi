@@ -33,7 +33,7 @@ const FranchiseSection = () => {
   ];
 
   return (
-    <section id="franquia" className="py-16 md:py-24 bg-background">
+    <section id="franquia" className="py-16 md:py-24">
       <div className="container mx-auto px-4">
         <div className="max-w-5xl mx-auto">
           {/* Título com fade-in */}
@@ -72,7 +72,7 @@ const FranchiseSection = () => {
                 return (
                   <div
                     key={index}
-                    className="bg-background rounded-2xl p-6 shadow-md hover:shadow-lg transition-all duration-700"
+                    className="bg-white/80 backdrop-blur-sm rounded-2xl p-6 shadow-md hover:shadow-lg transition-all duration-700"
                     style={{
                       transitionDelay: `${delay}ms`,
                       opacity: cardsVisible ? 1 : 0,

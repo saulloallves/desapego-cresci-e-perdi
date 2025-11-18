@@ -4,6 +4,7 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { Bubble } from "@typebot.io/react";
+import ScrollToTop from "./components/ScrollToTop";
 import Index from "./pages/Index";
 import FindUnitPage from "./pages/FindUnitPage";
 import NotFound from "./pages/NotFound";
@@ -23,6 +24,7 @@ const App = () => (
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>
+      <ScrollToTop />
       <Bubble
         typebot="meu-typebot-jsfreuf"
         apiHost="https://fluxoapi.contatocrescieperdi.com.br"

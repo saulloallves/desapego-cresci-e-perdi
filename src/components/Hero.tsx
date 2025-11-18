@@ -1,35 +1,26 @@
 import { Button } from "@/components/ui/button";
 import { LeadFormDialog } from "@/components/LeadFormDialog";
+import mockup from "@/assets/mockup.png";
+
 const Hero = () => {
   return <section className="relative py-16 md:py-20 lg:py-24 flex items-center overflow-hidden">
       {/* Background */}
-      <div className="absolute inset-0 bg-secondary"></div>
+      <div className="absolute inset-0 bg-gradient-to-r from-secondary via-secondary/80 to-[#ffa81f]"></div>
 
       {/* Content */}
-      <div className="container mx-auto px-4 relative z-10">
+      <div className="container mx-auto px-4 py-5 relative z-10">
         <div className="grid lg:grid-cols-2 gap-8 items-center">
           {/* Left Side - Main Message */}
-          <div className="text-center lg:text-left animate-fade-in-up">
-            <div className="bg-primary text-primary-foreground inline-block px-8 py-4 rounded-2xl shadow-[var(--shadow-strong)] mb-6 transform -rotate-1">
-              <h1 className="font-display text-3xl md:text-5xl lg:text-6xl leading-tight">
-                NÃO SERVE MAIS
-                <br />
-                PARA SEUS FILHOS?
-              </h1>
-            </div>
-            <div className="bg-background text-foreground inline-block px-8 py-4 rounded-2xl shadow-lg transform rotate-1">
-              <h2 className="font-display text-3xl md:text-5xl lg:text-6xl text-primary">
-                NÓS COMPRAMOS!
-              </h2>
-            </div>
+          <div className="text-left animate-fade-in-up">
+            <img src={mockup} alt="Não serve mais para seus filhos? Nós compramos!" className="w-full max-w-2xl" />
           </div>
 
           {/* Right Side - CTA */}
           <div className="flex flex-col items-center lg:items-end gap-6" style={{
           animation: "fade-in-up 0.6s ease-out 0.3s both"
         }}>
-            <div className="bg-secondary text-secondary-foreground px-8 py-6 rounded-2xl shadow-lg text-center transform rotate-1">
-              <p className="font-bold text-xl md:text-2xl mb-4">
+            <div className="bg-primary text-secondary-foreground px-8 py-6 rounded-2xl shadow-lg text-center transform rotate-1">
+              <p className="font-bold text-xl md:text-2xl mb-4 text-white">
                 A UNIDADE MAIS PRÓXIMA
                 <br />
                 PARA VOCÊ DESAPEGAR
@@ -40,7 +31,7 @@ const Hero = () => {
                 trigger={
                   <Button
                     size="lg"
-                    className="bg-primary hover:bg-primary/90 text-primary-foreground font-display text-2xl md:text-3xl px-12 py-8 h-auto rounded-full shadow-[var(--shadow-strong)] hover:scale-105 transition-transform"
+                    className="bg-[#00aeff] hover:bg-[#00aeff]/95 text-primary-foreground font-display text-2xl md:text-3xl px-12 py-8 h-auto rounded-full shadow-[var(--shadow-strong)] hover:scale-105 transition-transform"
                   >
                     CLIQUE AQUI!
                   </Button>

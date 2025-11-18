@@ -52,7 +52,7 @@ const FAQSection = () => {
 
           <div 
             ref={accordionRef}
-            className={`bg-background rounded-3xl p-6 md:p-8 shadow-[var(--shadow-soft)] transition-all duration-700 delay-200 ${
+            className={`bg-white/80 backdrop-blur-sm rounded-3xl p-6 md:p-8 shadow-[var(--shadow-soft)] transition-all duration-700 delay-200 ${
               accordionVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-20'
             }`}
           >

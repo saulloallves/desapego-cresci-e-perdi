@@ -9,7 +9,7 @@ const ImpactSection = () => {
   const { ref: finalRef, isVisible: finalVisible } = useIntersectionObserver();
 
   return (
-    <section className="py-16 md:py-24 bg-background">
+    <section className="py-16 md:py-24">
       <div className="container mx-auto px-4">
         {/* Impact Text */}
         {/* Título com fade-in */}
@@ -53,7 +53,7 @@ const ImpactSection = () => {
             }}></div>
             
             <div className="relative z-10 text-center px-4 py-12">
-              <div className="bg-secondary/95 backdrop-blur-sm text-secondary-foreground inline-block px-8 py-6 rounded-2xl shadow-lg mb-6 transform -rotate-1">
+              <div className="bg-secondary/95 backdrop-blur-sm text-secondary-foreground inline-block px-8 py-6 mr-5 rounded-2xl shadow-lg mb-6 transform -rotate-1">
                 <p className="font-display text-2xl md:text-3xl lg:text-4xl">
                   A UNIDADE MAIS PRÓXIMA
                   <br />
@@ -67,7 +67,7 @@ const ImpactSection = () => {
                 trigger={
                   <Button
                     size="lg"
-                    className="bg-primary hover:bg-primary/90 text-primary-foreground font-display text-2xl md:text-3xl px-12 py-8 h-auto rounded-full shadow-[var(--shadow-strong)] hover:scale-105 transition-transform transform rotate-1"
+                    className="bg-primary hover:bg-primary/90 text-primary-foreground font-display ml-5 text-2xl md:text-3xl px-12 py-8 h-auto rounded-full shadow-[var(--shadow-strong)] hover:scale-105 transition-transform transform rotate-1"
                   >
                     CLIQUE AQUI!
                   </Button>

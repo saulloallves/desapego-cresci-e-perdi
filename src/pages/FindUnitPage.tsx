@@ -8,6 +8,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { useToast } from "@/hooks/use-toast";
 import { MapPin, Phone, Instagram, Navigation, Share2 } from "lucide-react";
+import logo from "@/assets/logo cresci-header.png";
 
 const searchSchema = z.object({
   address: z.string().min(5, "Digite um endereço ou CEP válido"),
@@ -343,14 +344,14 @@ const FindUnitPage = () => {
   return (
     <div className="min-h-screen bg-background">
       {/* Header */}
-      <header className="bg-primary text-primary-foreground py-6">
+      <header className="text-primary-foreground py-6 border-b border-primary mb-8">
         <div className="container mx-auto px-4">
-          <button
-            onClick={() => navigate("/")}
-            className="text-2xl md:text-3xl font-display hover:opacity-80 transition-opacity"
-          >
-            CRESCI<span className="text-accent">E</span>PERDI
-          </button>
+          {/* Logo */}
+          <a href="/" className="flex items-center gap-2">
+          <div className="flex items-center gap-2">
+            <img src={logo} alt="Cresci e Perdi" className="h-10 md:h-12" />
+          </div>
+          </a>
         </div>
       </header>
 
