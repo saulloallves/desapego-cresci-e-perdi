@@ -23,6 +23,7 @@ import {
 } from "lucide-react";
 import logo from "@/assets/logo cresci-header.png";
 import UnitInfoModal from "@/components/UnitInfoModal";
+import mockup from "@/assets/mockup-cta.png";
 
 const searchSchema = z.object({
   address: z.string().min(5, "Digite um endereço ou CEP válido"),
@@ -175,7 +176,7 @@ const FindUnitPage = () => {
           lat: data.clientLocation.latitude,
           lng: data.clientLocation.longitude,
         });
-        
+
         // Gradually zoom in
         setTimeout(() => {
           map.setZoom(12);
@@ -344,7 +345,7 @@ const FindUnitPage = () => {
 
         toast({
           title: "Rota calculada!",
-          description: `${distanceKm} km · ${durationText}`,
+          description: `Desça a página para compartilhar a rota e ver mais informações.`,
         });
       }
     } catch (error) {
@@ -627,7 +628,7 @@ const FindUnitPage = () => {
                         key={`pin-${unit.id}`}
                         position={{ lat: unit.latitude, lng: unit.longitude }}
                         icon={{
-                          url:"https://gzuotqtebrvvzakeoodd.supabase.co/storage/v1/object/public/Type/cabeca-girafa.png",
+                          url: "https://gzuotqtebrvvzakeoodd.supabase.co/storage/v1/object/public/Type/cabeca-girafa.png",
                           scaledSize: new google.maps.Size(40, 40), // Tamanho do ícone no mapa
                           origin: new google.maps.Point(0, 0),
                           anchor: new google.maps.Point(20, 20), // Ancora o ícone no ponto correto (meio/base)
@@ -646,7 +647,7 @@ const FindUnitPage = () => {
                       options={{
                         strokeColor: "#2563eb", // Azul forte
                         strokeWeight: 6, // Linha grossa
-                        strokeOpacity: 0.9,
+                        strokeOpacity: 1.0,
                         geodesic: true,
                       }}
                     />
@@ -659,7 +660,7 @@ const FindUnitPage = () => {
 
         {/* Route Details Section */}
         {selectedRoute && (
-          <div className="container mx-auto px-4 mt-8 animate-fade-in-up">
+          <div className="container mx-auto px-4 mt-8 animate-fade-in-up max-w-6xl">
             <div className="bg-gradient-to-br from-primary/5 to-accent/5 rounded-3xl p-6 md:p-8 shadow-xl border-2 border-primary/20">
               <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
                 {/* Route Info */}
@@ -711,18 +712,23 @@ const FindUnitPage = () => {
                       {selectedRoute.unit.postalCode}
                     </p>
                   </div>
-                </div>
 
-                {/* Share Button */}
-                <div className="w-full md:w-auto">
                   <Button
                     onClick={handleShareRoute}
                     size="lg"
-                    className="w-full md:w-auto text-lg gap-3 py-6 px-8 rounded-full"
+                    className="w-full md:w-auto text-lg gap-3 py-6 px-8 rounded-full mt-5"
                   >
                     <Share2 size={24} />
                     <span className="font-bold">Compartilhar Rota</span>
                   </Button>
+                </div>
+                {/* Share Button */}
+                <div className="w-full md:w-auto">
+                  <img
+                    src={mockup}
+                    alt="Mascote Cresci e Perdi"
+                    className="w-full max-w-sm object-contain drop-shadow-2xl"
+                  />
                 </div>
               </div>
             </div>
