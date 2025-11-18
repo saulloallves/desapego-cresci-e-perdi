@@ -1,5 +1,6 @@
-import { Coins, Sparkles, Heart, Home } from "lucide-react";
+import { Sparkles, Heart, Home } from "lucide-react";
 import { useIntersectionObserver } from "@/hooks/use-intersection-observer";
+import moeda from "@/assets/moeda.png";
 
 const HowItWorks = () => {
   const { ref: titleRef, isVisible: titleVisible } = useIntersectionObserver();
@@ -9,24 +10,27 @@ const HowItWorks = () => {
 
   const benefits = [
     {
-      icon: Coins,
-      title: "Economize",
-      description: "ao vender seus itens seminovos, você ganha um valor que pode ser usado para renovar o guarda-roupa ou a brinquedoteca dos seus filhos.",
+      icon: "moeda",
+      title: "Giracrédito",
+      description:
+        "Ao vender seus itens seminovos, você ganha um valor que pode ser usado para renovar o guarda-roupa ou a brinquedoteca dos seus filhos.",
     },
     {
       icon: Sparkles,
-      title: "Ganhe espaço",
-      description: "seu armário fica mais organizado, com apenas o que realmente é necessário.",
+      title: "Variedade de Itens",
+      description:
+        "Temos de tudo um pouco: roupas, calçados e brinquedos infantis em ótimo estado, prontos para uma nova aventura com outra família.",
     },
     {
       icon: Home,
-      title: "Dê um novo propósito",
-      description: "seus itens ganham uma nova chance.",
+      title: "Facilidade e Conveniência",
+      description: "Ao chegar na loja, nossa equipe cuida de todo o processo de avaliação e compra dos seus itens, tornando tudo rápido e simples para você.",
     },
     {
       icon: Heart,
       title: "Ajude outras famílias",
-      description: "o que para você já não tem uso, pode ser exatamente o que outra pessoa estava procurando.",
+      description:
+        "O que para você já não tem uso, pode ser exatamente o que outra pessoa estava procurando, você contribui com um família e ainda ganha espaço em casa.",
     },
   ];
 
@@ -36,32 +40,36 @@ const HowItWorks = () => {
         <div className="max-w-5xl mx-auto">
           {/* Título com fade-in */}
           <div ref={titleRef} className="text-center mb-12">
-            <h2 className={`font-black text-4xl md:text-5xl lg:text-6xl text-primary mb-8 transition-all duration-700 ${
-              titleVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
-            }`}>
+            <h2
+              className={`font-black text-4xl md:text-5xl lg:text-6xl text-primary mb-8 transition-all duration-700 ${
+                titleVisible
+                  ? "opacity-100 translate-y-0"
+                  : "opacity-0 translate-y-10"
+              }`}
+            >
               COMO FUNCIONA O DESAPEGO?
             </h2>
           </div>
 
           {/* Card de texto com slide-up */}
-          <div 
+          <div
             ref={textRef}
             className={`bg-white/80 backdrop-blur-sm rounded-3xl p-8 md:p-12 shadow-[var(--shadow-soft)] mb-12 transition-all duration-700 ${
-              textVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-20'
+              textVisible
+                ? "opacity-100 translate-y-0"
+                : "opacity-0 translate-y-20"
             }`}
           >
             <p className="text-lg md:text-xl leading-relaxed text-center mb-8">
-              Desapegar com a Cresci e Perdi é simples e vantajoso! Ao trazer seus
-              itens seminovos, como roupas, calçados e brinquedos infantis, para uma
-              de nossas lojas, você tem a oportunidade de receber dinheiro ou
-              giracrédito na loja para adquirir novos produtos, que passaram por uma
-              curadoria de qualidade e estão disponíveis por preços mais acessíveis.
+              Fazer isso é muito fácil: Separa tudo que os seus filhos não usam
+              mais, leva até a loja mais próxima e pronto! <br></br>Você recebe PIX na
+              hora, ou <span className="font-bold text-secondary">Giracrédito</span>, que vale mais do que dinheiro, e para quem
+              quer só comprar, esse é o lugar para você economizar.
             </p>
 
             {/* Grid de benefícios com animação escalonada */}
             <div ref={cardsRef} className="grid md:grid-cols-2 gap-6">
               {benefits.map((benefit, index) => {
-                const Icon = benefit.icon;
                 const delay = index * 100;
                 return (
                   <div
@@ -70,13 +78,27 @@ const HowItWorks = () => {
                     style={{
                       transitionDelay: `${delay}ms`,
                       opacity: cardsVisible ? 1 : 0,
-                      transform: cardsVisible ? 'translateY(0)' : 'translateY(20px)'
+                      transform: cardsVisible
+                        ? "translateY(0)"
+                        : "translateY(20px)",
                     }}
                   >
                     <div className="flex items-start gap-4">
-                      <div className="bg-accent text-accent-foreground p-3 rounded-full flex-shrink-0">
-                        <Icon size={24} />
-                      </div>
+                      {benefit.icon === "moeda" ? (
+                        <div className="p-0 rounded-full flex-shrink-0">
+                          <img 
+                            src={moeda} 
+                            alt="Giracrédito" 
+                            className="w-12 h-12 object-contain"
+                          />
+                        </div>
+                      ) : (
+                        <div className="bg-[#00aeff] text-white p-3 rounded-full flex-shrink-0">
+                          {benefit.icon === Sparkles && <Sparkles size={24} />}
+                          {benefit.icon === Home && <Home size={24} />}
+                          {benefit.icon === Heart && <Heart size={24} />}
+                        </div>
+                      )}
                       <div>
                         <h4 className="font-bold text-xl text-primary mb-2">
                           {benefit.title}:
@@ -90,22 +112,6 @@ const HowItWorks = () => {
                 );
               })}
             </div>
-          </div>
-
-          {/* CTA final com scale-in */}
-          <div 
-            ref={ctaRef}
-            className={`bg-secondary text-secondary-foreground rounded-3xl p-8 md:p-12 shadow-lg text-center transition-all duration-700 ${
-              ctaVisible ? 'opacity-100 scale-100' : 'opacity-0 scale-95'
-            }`}
-          >
-            <p className="text-lg md:text-xl leading-relaxed">
-              Esse processo não só beneficia você financeiramente, mas também
-              contribui com um ciclo de consumo mais consciente e duradouro.
-              Ao escolher a Cresci e Perdi, você faz parte de um movimento que
-              promove uma economia mais circular, onde nada é descartado sem
-              antes ser reutilizado e valorizado.
-            </p>
           </div>
         </div>
       </div>

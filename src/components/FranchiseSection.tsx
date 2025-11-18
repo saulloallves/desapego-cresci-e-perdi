@@ -38,7 +38,7 @@ const FranchiseSection = () => {
         <div className="max-w-5xl mx-auto">
           {/* Título com fade-in */}
           <div ref={titleRef} className="text-center mb-12">
-            <h2 className={`font-display text-4xl md:text-5xl lg:text-6xl text-primary mb-6 transition-all duration-700 ${
+            <h2 className={`font-black text-4xl md:text-5xl lg:text-6xl text-primary mb-6 transition-all duration-700 ${
               titleVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
             }`}>
               SEJA UM FRANQUEADO
@@ -110,13 +110,13 @@ const FranchiseSection = () => {
                 trigger={
                   <Button
                     size="lg"
-                    className="bg-accent hover:bg-accent/90 text-accent-foreground font-display text-2xl md:text-3xl px-12 py-8 h-auto rounded-full shadow-[var(--shadow-strong)] hover:shadow-2xl hover:scale-105 hover:-translate-y-2 transition-all duration-300"
+                    className="bg-accent hover:bg-accent/90 text-accent-foreground font-extrabold text-2xl md:text-3xl px-12 py-8 h-auto rounded-full shadow-[var(--shadow-strong)] hover:shadow-2xl hover:scale-105 hover:-translate-y-2 transition-all duration-300"
                   >
                     SEJA UM FRANQUEADO
                   </Button>
                 }
               />
-              <p className="text-sm text-muted-foreground mt-4">
+              <p className="text-sm text-muted-foreground mt-5">
                 Entre em contato e descubra como levar essa transformação
                 para sua região!
               </p>
