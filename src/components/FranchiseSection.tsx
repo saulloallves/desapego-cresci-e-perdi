@@ -72,7 +72,7 @@ const FranchiseSection = () => {
                 return (
                   <div
                     key={index}
-                    className="bg-white/80 backdrop-blur-sm rounded-2xl p-6 shadow-md hover:shadow-lg transition-all duration-700"
+                    className="bg-white/80 backdrop-blur-sm rounded-2xl p-5 shadow-md hover:shadow-lg transition-all duration-700"
                     style={{
                       transitionDelay: `${delay}ms`,
                       opacity: cardsVisible ? 1 : 0,
@@ -110,13 +110,13 @@ const FranchiseSection = () => {
                 trigger={
                   <Button
                     size="lg"
-                    className="bg-accent hover:bg-accent/90 text-accent-foreground font-extrabold text-2xl md:text-3xl px-12 py-8 h-auto rounded-full shadow-[var(--shadow-strong)] hover:shadow-2xl hover:scale-105 hover:-translate-y-2 transition-all duration-300"
+                    className="bg-accent hover:bg-accent/90 text-accent-foreground font-extrabold text-lg md:text-3xl px-5 md:px-12 py-5 md:py-8 h-auto rounded-full shadow-[var(--shadow-strong)] hover:shadow-2xl hover:scale-105 hover:-translate-y-2 transition-all duration-300"
                   >
                     SEJA UM FRANQUEADO
                   </Button>
                 }
               />
-              <p className="text-sm text-muted-foreground mt-5">
+              <p className="text-muted-foreground mt-5">
                 Entre em contato e descubra como levar essa transformação
                 para sua região!
               </p>
