@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import { z } from "zod";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -7,6 +7,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { createLead, LeadType } from "@/lib/leads";
 import { useToast } from "@/hooks/use-toast";
 import { Button } from "@/components/ui/button";
+import { Checkbox } from "@/components/ui/checkbox";
 import {
   Dialog,
   DialogContent,
@@ -35,6 +36,16 @@ const leadSchema = z.object({
     .max(100, "Cidade muito longa")
     .optional()
     .or(z.literal("")),
+  acceptedTerms: z
+    .boolean()
+    .refine((val) => val === true, {
+      message: "Você deve aceitar os termos de uso.",
+    }),
+  contactConsent: z
+    .boolean()
+    .refine((val) => val === true, {
+      message: "Você deve permitir o contato.",
+    }),
 });
 
 export type LeadFormValues = z.infer<typeof leadSchema>;
@@ -58,6 +69,8 @@ export function LeadFormDialog({ type, sourceSection, trigger }: LeadFormDialogP
       name: "",
       phone: "",
       city: "",
+      acceptedTerms: false,
+      contactConsent: false,
     },
   });
 
@@ -101,6 +114,8 @@ export function LeadFormDialog({ type, sourceSection, trigger }: LeadFormDialogP
         phone: values.phone,
         city: values.city || undefined,
         sourceSection,
+        acceptedTerms: values.acceptedTerms,
+        contactConsent: values.contactConsent,
       });
 
       toast({
@@ -182,6 +197,64 @@ export function LeadFormDialog({ type, sourceSection, trigger }: LeadFormDialogP
               <p className="text-sm text-red-500">{form.formState.errors.city.message}</p>
             )}
           </div>
+
+          {isFranchise && (
+            <div className="space-y-4 pt-2">
+              <div className="flex items-start space-x-2">
+                <Checkbox
+                  id="acceptedTerms"
+                  checked={form.watch("acceptedTerms")}
+                  onCheckedChange={(checked) =>
+                    form.setValue("acceptedTerms", checked as boolean)
+                  }
+                />
+                <div className="grid gap-1.5 leading-none">
+                  <label
+                    htmlFor="acceptedTerms"
+                    className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+                  >
+                    Eu li e aceito os{" "}
+                    <Link
+                      to="/termos-de-uso"
+                      target="_blank"
+                      className="text-primary underline hover:text-primary/80"
+                    >
+                      Termos de Uso e LGPD
+                    </Link>
+                    .
+                  </label>
+                  {form.formState.errors.acceptedTerms && (
+                    <p className="text-sm text-red-500">
+                      {form.formState.errors.acceptedTerms.message}
+                    </p>
+                  )}
+                </div>
+              </div>
+
+              <div className="flex items-start space-x-2">
+                <Checkbox
+                  id="contactConsent"
+                  checked={form.watch("contactConsent")}
+                  onCheckedChange={(checked) =>
+                    form.setValue("contactConsent", checked as boolean)
+                  }
+                />
+                <div className="grid gap-1.5 leading-none">
+                  <label
+                    htmlFor="contactConsent"
+                    className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+                  >
+                    Concordo em receber contato da equipe Cresci e Perdi.
+                  </label>
+                  {form.formState.errors.contactConsent && (
+                    <p className="text-sm text-red-500">
+                      {form.formState.errors.contactConsent.message}
+                    </p>
+                  )}
+                </div>
+              </div>
+            </div>
+          )}
 
           <Button
             type="submit"

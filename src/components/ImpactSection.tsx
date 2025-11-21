@@ -1,9 +1,35 @@
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { useIntersectionObserver } from "@/hooks/use-intersection-observer";
-import { LeadFormDialog } from "@/components/LeadFormDialog";
+import { createLead } from "@/lib/leads";
+import { useToast } from "@/hooks/use-toast";
 import lojaGirafa from "@/assets/loja-girafa.png";
 
 const ImpactSection = () => {
+  const navigate = useNavigate();
+  const { toast } = useToast();
+  const [isRedirecting, setIsRedirecting] = useState(false);
+
+  const handleDesapegarClick = async () => {
+    setIsRedirecting(true);
+    try {
+      const newLead = await createLead({
+        type: "sell_items",
+        sourceSection: "impact_section_cta",
+      });
+      navigate(`/encontrar-unidade?leadId=${newLead.id}`);
+    } catch (error) {
+      console.error("Failed to create lead:", error);
+      toast({
+        title: "Erro",
+        description: "Não foi possível iniciar o processo. Tente novamente.",
+        variant: "destructive",
+      });
+      setIsRedirecting(false);
+    }
+  };
+
   const { ref: titleRef, isVisible: titleVisible } = useIntersectionObserver();
   const { ref: finalRef, isVisible: finalVisible } = useIntersectionObserver();
 
@@ -48,18 +74,14 @@ const ImpactSection = () => {
                 transformar. Ele traz não só benefícios materiais, mas também o
                 sentimento de fazer parte de algo maior.
               </p>
-              <LeadFormDialog
-                type="sell_items"
-                sourceSection="impact_section"
-                trigger={
-                  <Button
-                    size="lg"
-                    className="w-full lg:w-auto font-black bg-[#00aeff] hover:bg-[#00aeff]/90 text-primary-foreground font-display text-base md:text-xl lg:text-2xl px-6 md:px-10 py-4 md:py-6 lg:py-8 h-auto rounded-full shadow-[var(--shadow-strong)] hover:scale-105 transition-transform"
-                  >
-                    CLIQUE AQUI E DESAPEGUE!
-                  </Button>
-                }
-              />
+              <Button
+                onClick={handleDesapegarClick}
+                disabled={isRedirecting}
+                size="lg"
+                className="w-full lg:w-auto font-black bg-[#00aeff] hover:bg-[#00aeff]/90 text-primary-foreground font-display text-base md:text-xl lg:text-2xl px-6 md:px-10 py-4 md:py-6 lg:py-8 h-auto rounded-full shadow-[var(--shadow-strong)] hover:scale-105 transition-transform"
+              >
+                {isRedirecting ? "Aguarde..." : "CLIQUE AQUI E DESAPEGUE!"}
+              </Button>
             </div>
           </div>
         </div>

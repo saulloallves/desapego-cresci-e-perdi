@@ -7,9 +7,11 @@ import { Bubble } from "@typebot.io/react";
 import ScrollToTop from "./components/ScrollToTop";
 import Index from "./pages/Index";
 import FindUnitPage from "./pages/FindUnitPage";
+import TermsPage from "./pages/TermsPage";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
+
 
 const App = () => (
   <QueryClientProvider client={queryClient}>
@@ -20,7 +22,7 @@ const App = () => (
         <Routes>
           <Route path="/" element={<Index />} />
           <Route path="/encontrar-unidade" element={<FindUnitPage />} />
-          {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
+          <Route path="/termos-de-uso" element={<TermsPage />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>

@@ -1,9 +1,35 @@
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { useIntersectionObserver } from "@/hooks/use-intersection-observer";
-import { LeadFormDialog } from "./LeadFormDialog";
+import { createLead } from "@/lib/leads";
+import { useToast } from "@/hooks/use-toast";
 import { Button } from "@/components/ui/button";
 import mockup from "@/assets/mockup-girafa.png";
 
 const AboutSection = () => {
+  const navigate = useNavigate();
+  const { toast } = useToast();
+  const [isRedirecting, setIsRedirecting] = useState(false);
+
+  const handleDesapegarClick = async () => {
+    setIsRedirecting(true);
+    try {
+      const newLead = await createLead({
+        type: "sell_items",
+        sourceSection: "about_section_cta",
+      });
+      navigate(`/encontrar-unidade?leadId=${newLead.id}`);
+    } catch (error) {
+      console.error("Failed to create lead:", error);
+      toast({
+        title: "Erro",
+        description: "Não foi possível iniciar o processo. Tente novamente.",
+        variant: "destructive",
+      });
+      setIsRedirecting(false);
+    }
+  };
+
   const { ref: titleRef, isVisible: titleVisible } = useIntersectionObserver();
   const { ref: contentRef, isVisible: contentVisible } =
     useIntersectionObserver();
@@ -115,21 +141,19 @@ const AboutSection = () => {
                   </div>
 
                   {/* CTA Button com ícone */}
-                  <LeadFormDialog
-                    type="sell_items"
-                    sourceSection="about_section"
-                    trigger={
-                      <Button
-                        size="lg"
-                        className="w-full lg:w-auto group bg-primary hover:bg-primary/90 text-white font-black text-lg md:text-xl lg:text-2xl px-8 md:px-10 py-6 md:py-8 h-auto rounded-full shadow-2xl hover:shadow-primary/50 hover:scale-105 transition-all duration-300 flex items-center justify-center gap-3"
-                      >
-                        <span>ENCONTRAR UNIDADE</span>
-                        <span className="text-2xl md:text-3xl group-hover:translate-x-1 transition-transform">
-                          →
-                        </span>
-                      </Button>
-                    }
-                  />
+                  <Button
+                    onClick={handleDesapegarClick}
+                    disabled={isRedirecting}
+                    size="lg"
+                    className="w-full lg:w-auto group bg-primary hover:bg-primary/90 text-white font-black text-lg md:text-xl lg:text-2xl px-8 md:px-10 py-6 md:py-8 h-auto rounded-full shadow-2xl hover:shadow-primary/50 hover:scale-105 transition-all duration-300 flex items-center justify-center gap-3"
+                  >
+                    <span>
+                      {isRedirecting ? "Aguarde..." : "ENCONTRAR UNIDADE"}
+                    </span>
+                    <span className="text-2xl md:text-3xl group-hover:translate-x-1 transition-transform">
+                      →
+                    </span>
+                  </Button>
 
                   {/* Features */}
                   <div className="flex flex-wrap justify-center lg:justify-start gap-3 md:gap-4 text-white/90">
