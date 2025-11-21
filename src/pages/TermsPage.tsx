@@ -126,7 +126,7 @@ const TermsPage = () => {
               Se tiver alguma dúvida sobre estes termos, entre em contato
               conosco através do e-mail:{" "}
               <a
-                href="mailto:contato@crescieperdi.com.br"
+                href="mailto:equipecominicacao@crescieperdi.com.br"
                 className="text-primary hover:underline"
               >
                 equipecominicacao@crescieperdi.com.br
