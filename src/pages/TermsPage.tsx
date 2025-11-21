@@ -129,7 +129,7 @@ const TermsPage = () => {
                 href="mailto:contato@crescieperdi.com.br"
                 className="text-primary hover:underline"
               >
-                contato@crescieperdi.com.br
+                equipecominicacao@crescieperdi.com.br
               </a>
               .
             </p>
