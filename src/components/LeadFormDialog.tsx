@@ -6,6 +6,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 
 import { createLead, LeadType } from "@/lib/leads";
 import { useToast } from "@/hooks/use-toast";
+import { trackLeadEvent, trackFormOpen } from "@/lib/analytics";
 import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
 import {
@@ -76,6 +77,14 @@ export function LeadFormDialog({ type, sourceSection, trigger }: LeadFormDialogP
 
   const isFranchise = type === "franchise";
 
+  // Rastrear abertura do formulário
+  const handleOpenChange = (isOpen: boolean) => {
+    setOpen(isOpen);
+    if (isOpen) {
+      trackFormOpen(type, sourceSection);
+    }
+  };
+
   // Função para formatar telefone brasileiro
   const formatPhoneBR = (value: string) => {
     // Remove tudo que não é número
@@ -118,6 +127,14 @@ export function LeadFormDialog({ type, sourceSection, trigger }: LeadFormDialogP
         contactConsent: values.contactConsent,
       });
 
+      // Rastrear evento de lead no GTM e Facebook Pixel
+      trackLeadEvent(type, {
+        name: values.name,
+        phone: values.phone,
+        city: values.city,
+        sourceSection,
+      });
+
       toast({
         title: "Dados enviados com sucesso!",
         description: isFranchise
@@ -152,7 +169,7 @@ export function LeadFormDialog({ type, sourceSection, trigger }: LeadFormDialogP
     : "Preencha seus dados e te ajudaremos a encontrar a melhor forma de desapegar.";
 
   return (
-    <Dialog open={open} onOpenChange={setOpen}>
+    <Dialog open={open} onOpenChange={handleOpenChange}>
       <DialogTrigger asChild>{trigger}</DialogTrigger>
       <DialogContent>
         <DialogHeader>

@@ -5,6 +5,7 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { Bubble } from "@typebot.io/react";
 import ScrollToTop from "./components/ScrollToTop";
+import { AnalyticsTracker } from "./components/AnalyticsTracker";
 import Index from "./pages/Index";
 import FindUnitPage from "./pages/FindUnitPage";
 import TermsPage from "./pages/TermsPage";
@@ -19,6 +20,7 @@ const App = () => (
       <Toaster />
       <Sonner />
       <BrowserRouter>
+        <AnalyticsTracker />
         <Routes>
           <Route path="/" element={<Index />} />
           <Route path="/encontrar-unidade" element={<FindUnitPage />} />

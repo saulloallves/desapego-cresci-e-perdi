@@ -12,6 +12,7 @@ import {
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { useToast } from "@/hooks/use-toast";
+import { trackFindUnit, trackCTAClick } from "@/lib/analytics";
 import {
   MapPin,
   Phone,
@@ -169,6 +170,12 @@ const FindUnitPage = () => {
       const data = await response.json();
       setNearestUnits(data.nearestUnits);
       setClientLocation(data.clientLocation);
+
+      // Rastrear evento de unidade encontrada
+      trackFindUnit(
+        data.clientLocation?.address,
+        data.nearestUnits.length > 0
+      );
 
       // Smooth zoom animation to client location
       if (map) {
@@ -362,6 +369,12 @@ const FindUnitPage = () => {
 
   const handleShareRoute = async () => {
     if (!selectedRoute || !clientLocation) return;
+
+    // Rastrear clique em compartilhar rota
+    trackCTAClick("share_route", "find_unit_page", {
+      unit_name: selectedRoute.unit.name,
+      distance: selectedRoute.distance,
+    });
 
     const googleMapsUrl = `https://www.google.com/maps/dir/?api=1&origin=${clientLocation.latitude},${clientLocation.longitude}&destination=${selectedRoute.unit.latitude},${selectedRoute.unit.longitude}&travelmode=driving`;
 
